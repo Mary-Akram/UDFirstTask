@@ -1,0 +1,72 @@
+﻿@model UDFirstTask.DTOs.NewInformationDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script src="https://cdn.tiny.cloud/1/xzw9uf115zrip968vgpxohqs3q3it8m08wykhjg95m90l5er/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<h1>Create</h1>
+<hr />
+<div class="row">
+    <div class="col-md-9">
+        <form method="post" enctype="multipart/form-data" asp-action="SaveInfo" asp-controller="Information">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EnglishTitle" class="control-label"></label>
+                <input asp-for="EnglishTitle" class="form-control" />
+                <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicTitle" class="control-label"></label>
+                <input asp-for="ArabicTitle" class="form-control" />
+                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishDescription" class="control-label"></label>
+                <textarea asp-for="EnglishDescription" class="form-control custom-width" id="englishDescriptionTextArea"></textarea>
+                <span asp-validation-for="EnglishDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ArabicDescription" class="control-label"></label>
+                <textarea asp-for="ArabicDescription" class="form-control custom-width" id="arabicDescriptionTextArea"></textarea>
+                <span asp-validation-for="ArabicDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.ImageFile" class="form-label">Upload your Image</label>
+                <input asp-for="Image.ImageFile" type="file" class="form-control" id="formFile">
+                <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    tinymce.init({
+        selector: '#englishDescriptionTextArea',
+        height: 300, // Set the height of the text area
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image',
+    });
+
+    tinymce.init({
+        selector: '#arabicDescriptionTextArea',
+        height: 300, // Set the height of the text area
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image',
+    });
+</script>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UDFirstTask.styles.css" asp-append-version="true" />
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <header><partial name="_NavBar"/></header>
+
+    <div>
+        <div class="container mt-4">
+
+            @RenderBody();
+        </div>
+    </div>
+    <footer><partial name="_Footer" /></footer>
+</body>
+</html>

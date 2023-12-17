@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace UDFirstTask.Migrations
+namespace UDFirstTask.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,17 +14,17 @@ namespace UDFirstTask.Migrations
                 name: "Informations",
                 columns: table => new
                 {
-                    InformationId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EnglishTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArabicTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EnglishDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArabicDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EnglishTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ArabicTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    EnglishDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ArabicDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Informations", x => x.InformationId);
+                    table.PrimaryKey("PK_Informations", x => x.Id);
                 });
         }
 

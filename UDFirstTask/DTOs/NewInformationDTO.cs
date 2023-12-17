@@ -1,6 +1,8 @@
-﻿namespace UDFirstTask.DTO
+﻿using UDFirstTask.DTOs;
+
+namespace UDFirstTask.DTOs
 {
-    public class InformationDTO
+    public class NewInformationDTO
     {
             public string EnglishTitle { get; set; }
             public string ArabicTitle { get; set; }

@@ -3,12 +3,13 @@ using UDFirstTask.Models;
 
 namespace UDFirstTask.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-           : base(options)
+            : base(options)
         {
         }
+
         #region DbSets
         // DbSets
         public DbSet<Information> Informations { get; set; }

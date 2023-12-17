@@ -1,26 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UDFirstTask.Models
 {
     public class Information
     {
         [Key]
-        public int InformationId { get; set; } // Primary Key
-
+        public int Id{ get; set; }
         [Required]
+        [MaxLength(50)]
         public string EnglishTitle { get; set; }
-
         [Required]
+        [MaxLength(50)]
         public string ArabicTitle { get; set; }
-
-        [Required]
         public string EnglishDescription { get; set; }
-
-        [Required]
         public string ArabicDescription { get; set; }
-
-        public string ImagePath { get; set; }
+        public string ImagePath { get; set; } // Image data
     }
-
 }

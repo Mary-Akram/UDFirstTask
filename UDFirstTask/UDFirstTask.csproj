@@ -17,10 +17,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
+    <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="wwwroot\Images\Info\" />
+    <Folder Include="wwwroot\ProjectImages\" />
   </ItemGroup>
 
 </Project>

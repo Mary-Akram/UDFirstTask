@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using UDFirstTask.Data;
+using UDFirstTask.Repositories;
+using UDFirstTask.Repositories.Interfaces;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IInformationRepository, InformationRepository>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

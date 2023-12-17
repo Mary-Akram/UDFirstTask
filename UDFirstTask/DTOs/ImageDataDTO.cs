@@ -1,4 +1,4 @@
-﻿namespace UDFirstTask.DTO
+﻿namespace UDFirstTask.DTOs
 {
     public class ImageDataDTO
     {
