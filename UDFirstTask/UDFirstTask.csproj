@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Repositories\Interfaces\" />
     <Folder Include="wwwroot\Images\Info\" />
-    <Folder Include="wwwroot\ProjectImages\" />
   </ItemGroup>
 
 </Project>
