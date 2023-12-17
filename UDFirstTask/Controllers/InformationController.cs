@@ -58,23 +58,31 @@ namespace UDFirstTask.Controllers
 
         public async Task<ActionResult> ViewDetails(int id)
         {
-            var informationEntity = await _informationRepository.GetByIdAsync(id);
-            var information = new InformationDetailsDto
+            try
             {
-                EnglishTitle = informationEntity.EnglishTitle,
-                ArabicTitle = informationEntity.ArabicTitle,
-                EnglishDescription = informationEntity.EnglishDescription,
-                ArabicDescription = informationEntity.ArabicDescription,
-                ImagePath = informationEntity.ImagePath
-            };
+                var informationEntity = await _informationRepository.GetByIdAsync(id);
+                var information = new InformationDetailsDto
+                {
+                    EnglishTitle = informationEntity.EnglishTitle,
+                    ArabicTitle = informationEntity.ArabicTitle,
+                    EnglishDescription = informationEntity.EnglishDescription,
+                    ArabicDescription = informationEntity.ArabicDescription,
+                    ImagePath = informationEntity.ImagePath
+                };
 
-            if (information == null)
-            {
+                if (information == null)
+                {
 
-                return View("~/Views/Shared/_PageNotFound.cshtml");
+                    return View("~/Views/Shared/_PageNotFound.cshtml");
+                }
+
+                return View(information);
             }
-
-            return View(information);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while processing the SaveInfo action");
+                return View("~/Views/Shared/_Error.cshtml");
+            }
         }
 
 

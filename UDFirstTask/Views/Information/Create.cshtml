@@ -7,43 +7,56 @@
 
 <h1>Create</h1>
 <hr />
-<div class="row">
-    <div class="col-md-9">
-        <form method="post" enctype="multipart/form-data" asp-action="SaveInfo" asp-controller="Information">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" enctype="multipart/form-data" asp-action="SaveInfo" asp-controller="Information">
+    <div class="row mt-4 mb-4">
+        <!-- Left side (English) -->
+        <div class="col-md-6">
+            <!-- English Title -->
             <div class="form-group">
-                <label asp-for="EnglishTitle" class="control-label"></label>
+                <label asp-for="EnglishTitle" class="control-label">English Title</label>
                 <input asp-for="EnglishTitle" class="form-control" />
                 <span asp-validation-for="EnglishTitle" class="text-danger"></span>
             </div>
+
+            <!-- English Description -->
             <div class="form-group">
-                <label asp-for="ArabicTitle" class="control-label"></label>
-                <input asp-for="ArabicTitle" class="form-control" />
-                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EnglishDescription" class="control-label"></label>
+                <label asp-for="EnglishDescription" class="control-label">English Description</label>
                 <textarea asp-for="EnglishDescription" class="form-control custom-width" id="englishDescriptionTextArea"></textarea>
                 <span asp-validation-for="EnglishDescription" class="text-danger"></span>
             </div>
+        </div>
 
+        <!-- Right side (Arabic) -->
+        <div class="col-md-6">
+            <!-- Arabic Title -->
             <div class="form-group">
-                <label asp-for="ArabicDescription" class="control-label"></label>
+                <label asp-for="ArabicTitle" class="control-label">Arabic Title (العنوان)</label>
+                <input asp-for="ArabicTitle" class="form-control" />
+                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
+            </div>
+
+            <!-- Arabic Description -->
+            <div class="form-group">
+                <label asp-for="ArabicDescription" class="control-label">Arabic Description (الوصف)</label>
                 <textarea asp-for="ArabicDescription" class="form-control custom-width" id="arabicDescriptionTextArea"></textarea>
                 <span asp-validation-for="ArabicDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Image.ImageFile" class="form-label">Upload your Image</label>
-                <input asp-for="Image.ImageFile" type="file" class="form-control" id="formFile">
-                <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+
+    <!-- Image upload -->
+    <div class="form-group">
+        <label asp-for="Image.ImageFile" class="form-label">Upload your Image</label>
+        <input asp-for="Image.ImageFile" type="file" class="form-control" id="formFile">
+        <span asp-validation-for="Image.ImageFile" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-4">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
