@@ -1,0 +1,30 @@
+﻿
+@model UDFirstTask.DTOs.InformationDetailsDto
+
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+
+<h2>Details</h2>
+
+@{
+    var imagePath = string.IsNullOrEmpty(Model.ImagePath)
+        ? "/ProjectImages/NoImage.jpeg"
+        : $"/{Model.ImagePath}";
+
+    var imageFullPath = WebHostEnvironment.WebRootPath + imagePath;
+}
+
+<div style="max-width: 800px; margin: 0 auto; border: 1px solid #ccc; padding: 20px;">
+    <img src="@imagePath" alt="Image" style="display: block; margin: 0 auto; max-width: 100%; max-height: 400px;" />
+
+    <div style="margin-top: 20px;">
+        <h4>@Model.EnglishTitle</h4>
+        <h5>English Description:</h5>
+        <p>@Html.Raw(Model.EnglishDescription)</p>
+    </div>
+
+     <div style="margin-top: 20px; text-align: right;">
+        <h4> @Model.ArabicTitle </h4>
+        <h5>الوصف بالعربي</h5>
+        <p>@Html.Raw(Model.ArabicDescription)</p>
+    </div>
+</div>
