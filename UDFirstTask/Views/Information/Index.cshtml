@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>List Of Information</h1>
+<h1>Informations</h1>
 
 <style>
     card-img-top {
@@ -25,16 +25,16 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="card col-4 m-3" style="max-width: 300px;">
-           @{
-         var imagePath = string.IsNullOrEmpty(item.ImagePath) 
-         ? "/ProjectImages/NoImage.jpeg" 
-        : $"/{item.ImagePath}";
+        <div class="card col-md-4 mb-3" style="max-width: 300px; border: 1px solid #ddd; border-radius: 5px;">
+            @{
+                var imagePath = string.IsNullOrEmpty(item.ImagePath)
+                ? "/ProjectImages/NoImage.jpeg"
+                : $"/{item.ImagePath}";
 
-          var imageFullPath = WebHostEnvironment.WebRootPath + imagePath;
-           }
+                var imageFullPath = WebHostEnvironment.WebRootPath + imagePath;
+            }
 
-            <img class="card-img-top" src="@imagePath" alt="Card image cap">
+            <img class="card-img-top" src="@imagePath" alt="Card image" style="max-height: 200px; object-fit: cover; border-top-left-radius: 5px; border-top-right-radius: 5px;">
             <div class="card-body">
                 <h5 class="card-title">@item.EnglishTitle</h5>
                 <a href="@Url.Action("ViewDetails", "Information", new { id = item.Id })" class="btn btn-primary">View Details</a>
@@ -42,4 +42,3 @@
         </div>
     }
 </div>
-
