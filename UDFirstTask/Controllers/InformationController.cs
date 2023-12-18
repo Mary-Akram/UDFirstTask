@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using UDFirstTask.Data;
+using UDFirstTask.HelperMethods;
 using UDFirstTask.DTOs;
 using UDFirstTask.Repositories.Interfaces;
 
@@ -9,8 +9,6 @@ namespace UDFirstTask.Controllers
 {
     public class InformationController : Controller
     {
-
-
         private readonly IInformationRepository _informationRepository;
         private readonly ILogger<InformationController> _logger;
 
@@ -22,45 +20,69 @@ namespace UDFirstTask.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var informationList = await _informationRepository.GetAllAsync();
-            return View(informationList);
+            try
+            {
+                var informationList = await _informationRepository.GetAllAsync();
+                return View(informationList);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while fetching information for Index action");
+                return RedirectToAction("ErrorHandler", "Error", new { statusCode = 500 });
+            }
         }
 
-        // GET: InformationController/Create
+        //  InformationController/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: InformationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SaveInfo(NewInformationDTO newInformation)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-                try
+                var image = newInformation.Image?.ImageFile;
+                if (image != null)
                 {
-                    await _informationRepository.AddAsync(newInformation);
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "An error occurred while processing the SaveInfo action");
-                    return View("~/Views/Shared/_Error.cshtml");
-                }
+                    var validationResult = ImageHelper.ValidateImageFile(image);
 
+                    if (!validationResult.isValid)
+                    {
+                        ModelState.AddModelError("Image.ImageFile", validationResult.errorMessage);
+                    }
+                }
+                if (!ModelState.IsValid)
+                {
+                    return View("Create", newInformation);
+                } 
+           
+                await _informationRepository.AddAsync(newInformation);
+                return RedirectToAction("Index");
             }
-            return View(newInformation);
-
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while processing the SaveInfo action");
+                return RedirectToAction("ErrorHandler", "Error", new { statusCode = 500 });
+            }
         }
+
+
 
         public async Task<ActionResult> ViewDetails(int id)
         {
             try
             {
                 var informationEntity = await _informationRepository.GetByIdAsync(id);
+
+                if (informationEntity == null)
+                {
+                    return View("~/Views/Shared/_PageNotFound.cshtml");
+                }
+
                 var information = new InformationDetailsDto
                 {
                     EnglishTitle = informationEntity.EnglishTitle,
@@ -70,21 +92,14 @@ namespace UDFirstTask.Controllers
                     ImagePath = informationEntity.ImagePath
                 };
 
-                if (information == null)
-                {
-
-                    return View("~/Views/Shared/_PageNotFound.cshtml");
-                }
-
                 return View(information);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while processing the SaveInfo action");
-                return View("~/Views/Shared/_Error.cshtml");
+                _logger.LogError(ex, "An error occurred while processing the ViewDetails action");
+                return RedirectToAction("ErrorHandler", "Error", new { statusCode = 500 });
             }
         }
-
-
     }
+
 }

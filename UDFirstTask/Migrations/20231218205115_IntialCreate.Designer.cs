@@ -8,11 +8,11 @@ using UDFirstTask.Data;
 
 #nullable disable
 
-namespace UDFirstTask.Data.Migrations
+namespace UDFirstTask.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231217200914_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231218205115_IntialCreate")]
+    partial class IntialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

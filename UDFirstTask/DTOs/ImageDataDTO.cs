@@ -1,4 +1,6 @@
-﻿namespace UDFirstTask.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace UDFirstTask.DTOs
 {
     public class ImageDataDTO
     {

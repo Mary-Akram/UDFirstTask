@@ -7,7 +7,7 @@ using UDFirstTask.Data;
 
 #nullable disable
 
-namespace UDFirstTask.Data.Migrations
+namespace UDFirstTask.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

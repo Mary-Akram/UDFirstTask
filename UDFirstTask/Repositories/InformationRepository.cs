@@ -62,7 +62,7 @@ namespace UDFirstTask.Repositories
         public async Task AddAsync(NewInformationDTO information)
         {
            
-            if (information.Image.ImageFile!= null || information.Image.ImageFile.Length > 0)
+            if (information.Image?.ImageFile!= null || information.Image?.ImageFile.Length > 0)
             {
                 var ImagePath = @"Images\Info";
                 var uniqueImageName = Guid.NewGuid().ToString() + '_' + information.Image.ImageFile.FileName;
@@ -77,7 +77,7 @@ namespace UDFirstTask.Repositories
                 ArabicTitle = information.ArabicTitle,
                 EnglishDescription = information.EnglishDescription,
                 ArabicDescription = information.ArabicDescription,
-                ImagePath = information.Image.ImagePath
+                ImagePath = information.Image?.ImagePath
             };
 
             _db.Informations.Add(informationEntity);
