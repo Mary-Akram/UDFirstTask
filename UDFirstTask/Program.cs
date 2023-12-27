@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using UDFirstTask.Data;
+using UDFirstTask.Models;
 using UDFirstTask.Repositories;
 using UDFirstTask.Repositories.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args); 
 builder.Logging.ClearProviders();
@@ -18,6 +21,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services
+    .AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultUI().AddDefaultTokenProviders();
 
 
 var app = builder.Build();
@@ -42,6 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
