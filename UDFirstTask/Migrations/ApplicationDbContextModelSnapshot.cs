@@ -225,6 +225,42 @@ namespace UDFirstTask.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "SampleConcurrency789",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@gmail.com",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "admin123",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "SampleStamp456",
+                            TwoFactorEnabled = false,
+                            UserName = "admin",
+                            UserType = "Admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "SampleConcurrency456",
+                            Email = "client@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "client@gmail.com",
+                            NormalizedUserName = "CLIENT",
+                            PasswordHash = "client123",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "SampleStamp123",
+                            TwoFactorEnabled = false,
+                            UserName = "mary",
+                            UserType = "Client"
+                        });
                 });
 
             modelBuilder.Entity("UDFirstTask.Models.Information", b =>

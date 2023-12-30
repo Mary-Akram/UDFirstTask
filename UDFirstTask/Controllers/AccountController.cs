@@ -32,16 +32,26 @@ namespace UDFirstTask.Controllers
         public async Task<IActionResult> Login(LoginDto model)
         {
             
-                var user = await _authService.AuthenticateAsync(model);
+            var user = await _authService.AuthenticateAsync(model);
 
-                if (user != null)
-                {
-                    return RedirectToAction("Index","Home");
-                }
-                else
-                {
-                    return View(model);
-                }
+            if(user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid username or password");
+
+
+                return View("Index");
+            }
+            if (ModelState.IsValid)
+            {
+                
+                    return RedirectToAction("Index", "Home");
+              
+            }
+            else
+            {
+
+                return View("Index",model);
+            }
             
          }
 

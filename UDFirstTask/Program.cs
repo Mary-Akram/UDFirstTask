@@ -67,9 +67,9 @@ if (!app.Environment.IsDevelopment())
 else
 {
 
-    app.UseExceptionHandler("/Error/ErrorHandler"); 
-    app.UseStatusCodePagesWithReExecute("/Error/ErrorHandler/{0}"); 
-    app.UseHsts();
+   // app.UseExceptionHandler("/Error/ErrorHandler"); 
+    //app.UseStatusCodePagesWithReExecute("/Error/ErrorHandler/{0}"); 
+    //app.UseHsts();
 
 }
 

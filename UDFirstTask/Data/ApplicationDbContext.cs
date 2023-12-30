@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using UDFirstTask.Models;
 
@@ -20,8 +19,16 @@ namespace UDFirstTask.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
-;
+
+            modelBuilder.Entity<ApplicationUser>().HasData(ApplicationUser.GetDefaultUsers());
         }
+
     }
+
+
 }
+
+
+
