@@ -15,6 +15,10 @@ namespace UDFirstTask.Controllers
 
         public IActionResult Index()
         {
+            if(!HttpContext.User.Identity.IsAuthenticated)
+            { 
+                return RedirectToAction("Index","Account");
+            }
             return View();
         }
 

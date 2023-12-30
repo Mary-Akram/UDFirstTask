@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using UDFirstTask.DTOs;
+using UDFirstTask.Models;
 using UDFirstTask.Service;
 
 namespace UDFirstTask.Controllers
 {
+    [Route("Account")]
+
     public class AccountController : Controller
     {
         private readonly AuthService _authService;
+
 
         public AccountController(AuthService authService)
         {
@@ -14,6 +22,7 @@ namespace UDFirstTask.Controllers
         }
 
         [HttpGet]
+        [Route("Index")]
         public IActionResult Index()
         {
             return View();
@@ -35,5 +44,13 @@ namespace UDFirstTask.Controllers
                 }
             
          }
+
+        [Route("Logout")]
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index");
+        }
     }
 }

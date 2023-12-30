@@ -5,6 +5,7 @@ using UDFirstTask.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace UDFirstTask.Service
 {
@@ -73,6 +74,7 @@ namespace UDFirstTask.Service
             // User not found or password incorrect
             return null;
         }
+
     }
 
 }

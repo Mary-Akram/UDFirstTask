@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace UDFirstTask.Controllers
 {
-    [Authorize]
+   
     public class InformationController : Controller
     {
         private readonly IInformationRepository _informationRepository;
@@ -77,7 +77,7 @@ namespace UDFirstTask.Controllers
         }
 
 
-
+        [UserTypeAuthorize("Admin", "Client")]
         public async Task<ActionResult> ViewDetails(int id)
         {
             try

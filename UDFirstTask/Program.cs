@@ -34,8 +34,9 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(options =>
 {
-    options.LoginPath = "/Error/ErrorHandler/{401}";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Set cookie expiration time
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath  = "/Error/Auth";
 });
 
 builder.Services.AddAuthorization((Action<AuthorizationOptions>)(options =>
@@ -69,6 +70,7 @@ else
     app.UseExceptionHandler("/Error/ErrorHandler"); 
     app.UseStatusCodePagesWithReExecute("/Error/ErrorHandler/{0}"); 
     app.UseHsts();
+
 }
 
 app.UseHttpsRedirection();

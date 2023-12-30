@@ -20,8 +20,12 @@ namespace UDFirstTask.Authorization
             var authorizationResult = await _authorizationService.AuthorizeAsync(context.HttpContext.User, null, _requirement);
             if (!authorizationResult.Succeeded)
             {
-                context.Result = new ForbidResult();
+                context.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary(new { controller = "Error", action = "Auth" }));
+
             }
         }
+
+
     }
 }
