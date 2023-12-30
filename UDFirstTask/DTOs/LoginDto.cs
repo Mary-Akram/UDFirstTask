@@ -1,6 +1,12 @@
-﻿namespace UDFirstTask.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace UDFirstTask.DTOs
 {
-    public class Login
+    public class LoginDto
     {
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        public string Password { get; set; }
     }
 }

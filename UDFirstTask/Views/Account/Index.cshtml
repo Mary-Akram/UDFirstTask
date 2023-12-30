@@ -1,0 +1,27 @@
+﻿@using UDFirstTask.DTOs;
+@model LoginDto
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Login</h2>
+
+<<form method="post" enctype="multipart/form-data" asp-action="Login" asp-controller="Account" style="border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9;">
+                <!-- Username input -->
+    <div class="form-outline col-6 mb-4">
+     <label class="form-label">User Name</label>
+      <input asp-for="UserName" type="text" class="form-control" />
+      <span asp-validation-for="UserName" class="text-danger"></span>   
+       </div>
+                    
+                <!-- Password input -->
+      <div class="form-outline col-6 mb-4">
+      <input asp-for=Password type="password" class="form-control" />
+     <label asp-for=Password class="form-label">Password</label>
+      </div>
+
+
+                <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+           
+</form>

@@ -4,9 +4,12 @@ using System;
 using UDFirstTask.HelperMethods;
 using UDFirstTask.DTOs;
 using UDFirstTask.Repositories.Interfaces;
+using UDFirstTask.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UDFirstTask.Controllers
 {
+    [Authorize]
     public class InformationController : Controller
     {
         private readonly IInformationRepository _informationRepository;
@@ -17,6 +20,8 @@ namespace UDFirstTask.Controllers
             _informationRepository = informationRepository;
             _logger = logger;
         }
+
+        [UserTypeAuthorize("Admin","Client")]
 
         public async Task<ActionResult> Index()
         {
@@ -33,6 +38,7 @@ namespace UDFirstTask.Controllers
         }
 
         //  InformationController/Create
+        [UserTypeAuthorize("Admin")]
 
         public ActionResult Create()
         {
